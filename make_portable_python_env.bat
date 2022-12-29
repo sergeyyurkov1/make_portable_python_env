@@ -10,7 +10,10 @@ set "python_version=3.10.9"
 
 
 :: Downloads and extracts Python and Pip
-if exist "python-%python_version%" rmdir "python-%python_version%"
+if exist ".\python-%python_version%" (
+	echo Clearing existing directory
+	rmdir /s "python-%python_version%"
+)
 mkdir "python-%python_version%"
 call .\bin\wget.exe -c --no-check-certificate --progress=bar -O "python-%python_version%-embed-amd64.zip" "https://www.python.org/ftp/python/%python_version%/python-%python_version%-embed-amd64.zip"
 call .\bin\wget.exe -c --no-check-certificate --progress=bar -O "get-pip.py" "https://bootstrap.pypa.io/get-pip.py"
@@ -50,7 +53,7 @@ mkdir ".\python-%python_version%\DLLs"
 :: Project setup
 :: ===========================
 if exist "..\%project_name%" (
-	echo "'%project_name%' folder is not empty. Exiting..."
+	echo '%project_name%' folder is not empty. Exiting...
 	pause
 	exit
 )

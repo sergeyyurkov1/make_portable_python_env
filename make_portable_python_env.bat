@@ -49,6 +49,12 @@ mkdir ".\python-%python_version%\DLLs"
 
 :: Project setup
 :: ===========================
+if exist "..\%project_name%" (
+	echo "'%project_name%' folder is not empty. Exiting..."
+	pause
+	exit
+)
+
 mkdir "..\%project_name%"
 
 :: Creates a virtual environment in the project folder
